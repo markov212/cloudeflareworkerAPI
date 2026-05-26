@@ -1,12 +1,11 @@
-
 export default {
   async fetch(request) {
     const url = new URL(request.url)
 
     if (url.pathname === "/") {
       return new Response(
-        `        <h1>Cloudflare Worker API - Marko</h1>        <p>Uporabi naslednje poti:</p>        <ul>          <li>/api/time</li>          <li>/api/hello?name=Marko</li>          <li>/api/quote</li>          <li>/api/student</li>        </ul>        `,
-        { headers: { "content-type": "text/html" } }
+        `        <h1>Cloudflare Worker API - Marko</h1>        <p>Uporabi naslednje poti:</p>        <ul>          <li><a href="/api/time">/api/time</a></li>          <li><a href="/api/hello?name=Marko">/api/hello?name=Marko</a></li>          <li><a href="/api/quote">/api/quote</a></li>          <li><a href="/api/student">/api/student</a></li>        </ul>        `,
+        { headers: { "content-type": "text/html; charset=utf-8" } }
       )
     }
 
@@ -19,7 +18,7 @@ export default {
     if (url.pathname === "/api/hello") {
       const name = url.searchParams.get("name") || "guest"
       return Response.json({
-        message: `Zivijo ${name}, uspesno si spremenil pozdrav!`
+        message: `Živijo ${name}, uspešno si spremenil pozdrav!`
       })
     }
 
@@ -27,7 +26,8 @@ export default {
       return Response.json({
         ime: "Marko",
         priimek: "Vosner",
-        status: "Informatik - Velenje"
+        status: "Informatik - VSS Velenje",
+        sprememba: "Dodana nova API pot za študenta"
       })
     }
 
